@@ -14,200 +14,261 @@
 
 body{
   min-height:100vh;
-  font-family:Arial, sans-serif;
-  color:white;
-  overflow-x:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  font-family:Arial,sans-serif;
+  color:#fff;
   background:
-    radial-gradient(circle at top,#4f235f,#1c0f2b 45%,#09050f 100%);
+    radial-gradient(circle at top,#522864 0%,#21112f 48%,#09050f 100%);
 }
 
-.page{
-  width:min(92%,700px);
-  margin:auto;
-  padding:40px 0 80px;
+.bgGlow{
+  position:fixed;
+  width:450px;
+  height:450px;
+  border-radius:50%;
+  background:rgba(255,75,170,.16);
+  filter:blur(100px);
+  animation:glowMove 7s ease-in-out infinite alternate;
 }
 
-.glass{
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.15);
-  backdrop-filter:blur(15px);
-  border-radius:25px;
-  padding:28px;
-  margin-bottom:25px;
-  box-shadow:0 15px 50px rgba(0,0,0,.3);
+@keyframes glowMove{
+  from{transform:translate(-180px,-100px)}
+  to{transform:translate(170px,100px)}
+}
+
+.container{
+  width:min(92%,600px);
+  position:relative;
+  z-index:10;
+}
+
+.screen{
+  display:none;
+  width:100%;
+  min-height:470px;
+  padding:35px 28px;
+  border-radius:28px;
+  background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.17);
+  backdrop-filter:blur(18px);
+  box-shadow:0 25px 70px rgba(0,0,0,.35);
   text-align:center;
 }
 
-.hero{
-  min-height:380px;
+.screen.active{
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
+  animation:screenIn .65s ease;
 }
 
-.big-heart{
-  font-size:80px;
+@keyframes screenIn{
+  from{
+    opacity:0;
+    transform:translateY(25px) scale(.95);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+.bigHeart{
+  font-size:85px;
   animation:beat 1.2s infinite;
-  filter:drop-shadow(0 0 20px #ff5fae);
+  filter:drop-shadow(0 0 20px #ff58a8);
 }
 
 @keyframes beat{
   0%,100%{transform:scale(1)}
   25%{transform:scale(1.15)}
   50%{transform:scale(1)}
-  70%{transform:scale(1.1)}
+  70%{transform:scale(1.08)}
 }
 
 h1{
   font-size:38px;
-  margin:15px 0 8px;
+  margin:16px 0 10px;
+}
+
+h2{
+  font-size:27px;
+  margin-bottom:18px;
 }
 
 .pink{
-  background:linear-gradient(90deg,#ff72b5,#ffd6eb,#c38cff);
+  background:linear-gradient(90deg,#ff74b8,#ffd7ea,#b879ff);
   -webkit-background-clip:text;
   color:transparent;
 }
 
-.subtitle{
-  color:#e6cade;
-  line-height:1.6;
+p{
+  line-height:1.65;
 }
 
 button{
-  margin:10px;
-  padding:13px 20px;
-  border:none;
+  margin-top:24px;
+  border:0;
+  padding:14px 24px;
   border-radius:30px;
   cursor:pointer;
-  font-size:15px;
   font-weight:bold;
+  font-size:15px;
   color:white;
-  background:linear-gradient(135deg,#ff4f9f,#9a55ff);
-  box-shadow:0 8px 25px rgba(255,79,159,.3);
+  background:linear-gradient(135deg,#ff4ba0,#9d50ff);
+  box-shadow:0 8px 25px rgba(255,75,160,.3);
   transition:.25s;
 }
 
 button:hover{
-  transform:translateY(-2px) scale(1.04);
+  transform:translateY(-3px) scale(1.04);
 }
 
-#msg{
-  min-height:75px;
+button:active{
+  transform:scale(.96);
+}
+
+#message{
+  min-height:130px;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:20px;
-  line-height:1.5;
-  padding:10px;
+  font-size:22px;
+  line-height:1.6;
+}
+
+.cursor{
+  animation:blink .7s infinite;
+}
+
+@keyframes blink{
+  50%{opacity:0}
+}
+
+.progress{
+  font-size:13px;
+  opacity:.6;
+  margin-top:18px;
 }
 
 .meter{
   width:100%;
-  height:22px;
-  background:rgba(255,255,255,.1);
-  border-radius:20px;
+  height:24px;
+  border-radius:30px;
   overflow:hidden;
-  margin-top:20px;
+  background:rgba(255,255,255,.1);
+  margin:25px 0 10px;
 }
 
-.meter-fill{
-  width:0%;
+.meterFill{
   height:100%;
-  background:linear-gradient(90deg,#ff4f9f,#ff98c9);
-  transition:1.3s ease;
+  width:0%;
+  background:linear-gradient(90deg,#ff4c9e,#ffa0d1);
+  transition:1.5s;
 }
 
 #percent{
-  margin-top:12px;
-  font-size:20px;
+  font-size:23px;
+  margin-top:10px;
+}
+
+.compliment{
+  min-height:100px;
+  font-size:21px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
 .gameArea{
-  height:280px;
+  width:100%;
+  height:260px;
   position:relative;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:22px;
   overflow:hidden;
-  border-radius:20px;
-  background:rgba(255,255,255,.04);
   margin-top:20px;
 }
 
 #catchHeart{
   position:absolute;
-  font-size:45px;
+  font-size:48px;
   cursor:pointer;
   user-select:none;
-  transition:.15s;
 }
 
 #score{
-  margin-top:10px;
+  margin-top:15px;
   font-size:18px;
 }
 
-.question-box{
+.questionArea{
   position:relative;
-  min-height:170px;
+  width:100%;
+  min-height:180px;
 }
 
 #noBtn{
   position:absolute;
 }
 
-.secret{
-  font-size:45px;
+.secretIcon,
+.envelope{
+  font-size:80px;
   cursor:pointer;
+  margin:15px;
   transition:.3s;
 }
 
-.secret:hover{
-  transform:rotate(10deg) scale(1.15);
+.secretIcon:hover,
+.envelope:hover{
+  transform:scale(1.15) rotate(5deg);
 }
 
 #secretText{
   display:none;
-  margin-top:15px;
-  font-size:18px;
-}
-
-.envelope{
-  font-size:70px;
-  cursor:pointer;
-  transition:.4s;
-}
-
-.envelope:hover{
-  transform:scale(1.12);
+  margin-top:10px;
+  font-size:20px;
+  line-height:1.7;
 }
 
 #letter{
   max-height:0;
   overflow:hidden;
-  transition:max-height .8s ease;
+  transition:max-height .9s ease;
   line-height:1.8;
+  font-size:18px;
 }
 
 #letter.open{
-  max-height:250px;
-  margin-top:15px;
+  max-height:320px;
+  margin-top:18px;
+}
+
+.nextSection{
+  display:none;
 }
 
 .floating{
   position:fixed;
-  bottom:-40px;
+  bottom:-50px;
   pointer-events:none;
   animation:floatUp linear forwards;
-  z-index:-1;
+  z-index:1;
 }
 
 @keyframes floatUp{
-  from{
+  0%{
     transform:translateY(0) rotate(0deg);
     opacity:0;
   }
-  15%{opacity:.9}
-  to{
+  10%{opacity:1}
+  100%{
     transform:translateY(-115vh) rotate(360deg);
     opacity:0;
   }
@@ -215,8 +276,9 @@ button:hover{
 
 .confetti{
   position:fixed;
-  top:-20px;
-  font-size:20px;
+  top:-30px;
+  z-index:999;
+  pointer-events:none;
   animation:fall linear forwards;
 }
 
@@ -226,305 +288,701 @@ button:hover{
   }
 }
 
-.section-title{
-  margin-bottom:15px;
-  font-size:25px;
+.shake{
+  animation:shake .4s;
+}
+
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  25%{transform:translateX(-7px)}
+  75%{transform:translateX(7px)}
+}
+
+@media(max-width:600px){
+  .screen{
+    min-height:440px;
+    padding:28px 20px;
+  }
+
+  h1{
+    font-size:31px;
+  }
+
+  #message{
+    font-size:19px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="page">
+<div class="bgGlow"></div>
 
-  <div class="glass hero">
-    <div class="big-heart">💗</div>
-    <h1>Hey <span class="pink">Nisa</span></h1>
-    <p class="subtitle">
-      Ek chhota sa website... kyunki normal message thoda boring tha 😭❤️
+<div class="container">
+
+  <!-- INTRO -->
+  <section class="screen active">
+    <div class="bigHeart">💗</div>
+
+    <h1>
+      Hey <span class="pink">Nisa</span>
+    </h1>
+
+    <p>
+      Ek chhota sa surprise...<br>
+      kyunki normal message thoda boring tha 😭❤️
     </p>
-    <button onclick="scrollToFun()">Start 💌</button>
-  </div>
+
+    <button onclick="nextScreen()">
+      Start 💌
+    </button>
+  </section>
 
 
-  <div class="glass" id="fun">
-    <h2 class="section-title">Messages for You 💖</h2>
-    <div id="msg">Click below 👇</div>
-    <button onclick="nextMessage()">Next Message</button>
-  </div>
+  <!-- MESSAGES -->
+  <section class="screen">
+    <h2>Messages For You 💗</h2>
+
+    <div id="message">
+      Ready? 😭❤️
+    </div>
+
+    <button id="msgBtn" onclick="nextMessage()">
+      Next Message 💌
+    </button>
+
+    <div class="progress" id="msgProgress">
+      0 / 10
+    </div>
+
+    <button
+      class="nextSection"
+      id="messagesDone"
+      onclick="nextScreen()">
+      Next Surprise ❤️
+    </button>
+  </section>
 
 
-  <div class="glass">
-    <h2 class="section-title">AKS ❤️ Nisa Love Meter</h2>
-    <p>Scientific? Absolutely not 😭</p>
+  <!-- LOVE METER -->
+  <section class="screen">
+    <h2>AKS ❤️ Nisa Love Meter</h2>
+
+    <p>
+      Totally scientific calculation 😭
+    </p>
 
     <div class="meter">
-      <div class="meter-fill" id="meterFill"></div>
+      <div class="meterFill" id="meterFill"></div>
     </div>
 
     <div id="percent">0%</div>
 
-    <button onclick="calculateLove()">Calculate 😭❤️</button>
-  </div>
+    <button id="loveBtn" onclick="calculateLove()">
+      Calculate ❤️
+    </button>
+
+    <button
+      class="nextSection"
+      id="loveDone"
+      onclick="nextScreen()">
+      Next Surprise 💗
+    </button>
+  </section>
 
 
-  <div class="glass">
-    <h2 class="section-title">Random Compliment 🌷</h2>
-    <p id="compliment">Press the button 👀</p>
-    <button onclick="compliment()">Tell Me</button>
-  </div>
+  <!-- COMPLIMENT -->
+  <section class="screen">
+    <h2>Random Compliment 🌷</h2>
 
-
-  <div class="glass">
-    <h2 class="section-title">Catch My Heart 😭❤️</h2>
-    <p>Try catching it 10 times 👀</p>
-
-    <div class="gameArea" id="gameArea">
-      <div id="catchHeart" onclick="catchIt()">❤️</div>
+    <div class="compliment" id="compliment">
+      Click below 👀
     </div>
 
-    <div id="score">Score: 0</div>
-  </div>
+    <button onclick="showCompliment()">
+      Tell Me 😭❤️
+    </button>
+
+    <button
+      class="nextSection"
+      id="complimentDone"
+      onclick="nextScreen()">
+      Next Surprise ✨
+    </button>
+  </section>
 
 
-  <div class="glass question-box">
-    <h2 class="section-title">Important Question 😭</h2>
-    <p>Do you like AKS? ❤️</p>
+  <!-- HEART GAME -->
+  <section class="screen">
+    <h2>Catch My Heart ❤️</h2>
 
-    <button onclick="yesClicked()">YES 😭❤️</button>
-    <button id="noBtn" onmouseover="moveNo()">NO 😭</button>
-  </div>
+    <p>
+      Catch it 10 times 👀
+    </p>
+
+    <div class="gameArea" id="gameArea">
+      <div
+        id="catchHeart"
+        onclick="catchIt()">
+        ❤️
+      </div>
+    </div>
+
+    <div id="score">
+      Score: 0 / 10
+    </div>
+
+    <button
+      class="nextSection"
+      id="gameDone"
+      onclick="nextScreen()">
+      Next Surprise 💌
+    </button>
+  </section>
 
 
-  <div class="glass">
-    <h2 class="section-title">Secret Message 🔐</h2>
-    <div class="secret" onclick="showSecret()">🌸</div>
-    <p>Tap the flower</p>
+  <!-- QUESTION -->
+  <section class="screen">
+    <h2>Ek Important Question 😭❤️</h2>
+
+    <div class="questionArea">
+
+      <p style="font-size:22px">
+        AKS thoda sa cute hai na? 👀
+      </p>
+
+      <button onclick="yesClicked()">
+        Haan 😭❤️
+      </button>
+
+      <button
+        id="noBtn"
+        onmouseover="moveNo()"
+        ontouchstart="moveNo()">
+        Nahi 😂
+      </button>
+
+    </div>
+
+    <button
+      class="nextSection"
+      id="questionDone"
+      onclick="nextScreen()">
+      Next Surprise 🌸
+    </button>
+  </section>
+
+
+  <!-- SECRET -->
+  <section class="screen">
+    <h2>Secret Message 🔐</h2>
+
+    <p>Flower ko touch karo 👀</p>
+
+    <div
+      class="secretIcon"
+      onclick="showSecret()">
+      🌸
+    </div>
 
     <div id="secretText">
       Secret unlocked 😭❤️<br><br>
-      Tum sach me meri favourite notification ho.
+      Tum meri favourite notification ho.
     </div>
-  </div>
+
+    <button
+      class="nextSection"
+      id="secretDone"
+      onclick="nextScreen()">
+      Last Surprise 💌
+    </button>
+  </section>
 
 
-  <div class="glass">
-    <h2 class="section-title">A Small Letter 💌</h2>
+  <!-- LETTER -->
+  <section class="screen">
+    <h2>For You 💌</h2>
 
-    <div class="envelope" onclick="openLetter()">💌</div>
+    <p>Envelope open karo...</p>
+
+    <div
+      class="envelope"
+      onclick="openLetter()">
+      💌
+    </div>
 
     <div id="letter">
-      Nisa,<br><br>
-      Shaam se raat ho gayi thi ek chhote se “haan” ka wait karte karte 😭❤️
-      aur jab tumne finally yes bola, woh moment genuinely special tha.
+
+      Nisa ❤️
       <br><br>
-      Bas itna hi — stay happy, stay cute. 💗
+
+      Shaam se raat ho gayi thi
+      us chhote se “haan” ka wait karte karte 😭
+
+      <br><br>
+
+      Aur jab tumne finally haan bola,
+      sach me woh moment special tha.
+
+      <br><br>
+
+      Mujhe bas trust, care aur honesty chahiye.
+
+      <br><br>
+
+      Aur haan...
+      AKS ka chhota sa dil sambhal ke rakhna 😭❤️
+
     </div>
-  </div>
+
+    <button
+      class="nextSection"
+      id="letterDone"
+      onclick="finish()">
+      Finish ❤️
+    </button>
+  </section>
+
+
+  <!-- FINAL -->
+  <section class="screen">
+    <div class="bigHeart">💖</div>
+
+    <h1 class="pink">
+      That's All 😭❤️
+    </h1>
+
+    <p style="font-size:20px">
+      Website khatam ho gayi...
+      <br><br>
+      par tumhare liye cute messages nahi 😭💗
+    </p>
+
+    <button onclick="restart()">
+      Replay 🔁
+    </button>
+  </section>
 
 </div>
 
 <script>
 
+const screens =
+document.querySelectorAll(".screen");
+
+let screenIndex = 0;
+
+
+/* SCREEN CHANGE */
+
+function nextScreen(){
+
+  screens[screenIndex]
+  .classList.remove("active");
+
+  screenIndex++;
+
+  screens[screenIndex]
+  .classList.add("active");
+
+}
+
+
+/* MESSAGES */
+
 const messages = [
-  "Tumhari notification = instant smile 😭❤️",
-  "Ek 'haan' ne pura din bana diya.",
-  "Tumse baat karte karte time fast forward ho jata hai.",
+
+  "Shaam se raat ho gayi thi tumse baat karte karte...",
+
+  "Aur ek chhote se 'haan' ne pura mood bana diya 😭❤️",
+
+  "Tumhari notification aate hi automatically smile aa jati hai.",
+
+  "Tumse baat karte waqt time ka pata hi nahi chalta.",
+
   "Radha-Krishna ke prem ki sabse pyari baat trust tha ❤️",
-  "Aur mujhe bhi tumhare saath wahi trust chahiye.",
-  "No pressure, no drama... bas care.",
-  "Tumhari smile >>> everything 😭",
-  "Officially favourite person 💗",
-  "AKS ka dil safe rakhna madam 😭❤️",
-  "Thank you for saying yes."
+
+  "Aur mujhe bhi tumhare saath sabse zyada trust hi chahiye.",
+
+  "No fake promises... bas honesty aur care.",
+
+  "Tum normal nahi ho madam... favourite ho 😭💗",
+
+  "AKS ka chhota sa dil sambhal ke rakhna.",
+
+  "Aur finally... thank you for saying YES ❤️"
+
 ];
 
-let msgIndex = 0;
+let messageIndex = 0;
+let typing = false;
+
 
 function nextMessage(){
-  document.getElementById("msg").innerText = messages[msgIndex];
-  msgIndex++;
 
-  if(msgIndex >= messages.length){
-    msgIndex = 0;
+  if(typing)
+    return;
+
+  if(messageIndex >= messages.length)
+    return;
+
+  typeMessage(messages[messageIndex]);
+
+  messageIndex++;
+
+  document.getElementById("msgProgress")
+  .innerText =
+  messageIndex+" / "+messages.length;
+
+
+  if(messageIndex === messages.length){
+
+    document.getElementById("msgBtn")
+    .style.display="none";
+
+    setTimeout(()=>{
+
+      document.getElementById("messagesDone")
+      .style.display="inline-block";
+
+    },1500);
+
   }
+
 }
+
+
+function typeMessage(text){
+
+  typing=true;
+
+  const box =
+  document.getElementById("message");
+
+  box.innerHTML="";
+
+  let i=0;
+
+  const interval =
+  setInterval(()=>{
+
+    box.innerHTML =
+    text.substring(0,i)
+    +
+    '<span class="cursor">|</span>';
+
+    i++;
+
+    if(i > text.length){
+
+      clearInterval(interval);
+
+      box.innerText=text;
+
+      typing=false;
+
+    }
+
+  },35);
+
+}
+
+
+/* LOVE METER */
 
 function calculateLove(){
 
-  let target = Math.floor(Math.random()*4)+97;
-  let current = 0;
+  const target =
+  Math.floor(Math.random()*3)+98;
 
-  const fill = document.getElementById("meterFill");
-  const text = document.getElementById("percent");
+  let current=0;
 
-  fill.style.width = target+"%";
+  document.getElementById("loveBtn")
+  .disabled=true;
 
-  const timer = setInterval(()=>{
+  document.getElementById("meterFill")
+  .style.width=target+"%";
+
+
+  const interval=setInterval(()=>{
 
     current++;
-    text.innerText = current+"%";
+
+    document.getElementById("percent")
+    .innerText=current+"%";
 
     if(current >= target){
-      clearInterval(timer);
-      text.innerText = target+"% 😭❤️";
+
+      clearInterval(interval);
+
+      document.getElementById("percent")
+      .innerText=target+"% 😭❤️";
+
+      burstConfetti();
+
+      setTimeout(()=>{
+
+        document.getElementById("loveDone")
+        .style.display="inline-block";
+
+      },900);
+
     }
 
   },18);
+
 }
 
-const compliments = [
-  "Tumhari vibe alag hi hai 😭❤️",
-  "Tum cute ho... annoyingly cute.",
-  "Tumhare replies ka wait worth it hota hai 😭",
-  "Tumhari smile surely OP hogi.",
-  "Tum meri favourite notification ho 💗",
-  "Tumhari simplicity hi sabse pyari hai.",
-  "Tum ek normal din ko special bana deti ho."
+
+/* COMPLIMENTS */
+
+const compliments=[
+
+  "Tumhari vibe hi alag hai 😭❤️",
+
+  "Tumhari simplicity hi sabse cute hai.",
+
+  "Tumhari notification genuinely mood better kar deti hai.",
+
+  "Tumhari baatein unexpectedly addictive hain 😭",
+
+  "Tum favourite ho... reason mat puchhna 😂❤️",
+
+  "Tum ek normal din ko bhi special bana deti ho."
+
 ];
 
-function compliment(){
-  const r = Math.floor(Math.random()*compliments.length);
-  document.getElementById("compliment").innerText = compliments[r];
+
+function showCompliment(){
+
+  const random =
+  compliments[
+    Math.floor(
+      Math.random()*compliments.length
+    )
+  ];
+
+  document.getElementById("compliment")
+  .innerText=random;
+
+  document.getElementById("complimentDone")
+  .style.display="inline-block";
+
 }
 
-let score = 0;
+
+/* HEART GAME */
+
+let score=0;
 
 function moveHeart(){
 
-  const area = document.getElementById("gameArea");
-  const heart = document.getElementById("catchHeart");
+  const area=
+  document.getElementById("gameArea");
 
-  const maxX = area.clientWidth - 55;
-  const maxY = area.clientHeight - 55;
+  const heart=
+  document.getElementById("catchHeart");
 
-  heart.style.left = Math.random()*maxX+"px";
-  heart.style.top = Math.random()*maxY+"px";
+  const x=
+  Math.random()*(area.clientWidth-60);
+
+  const y=
+  Math.random()*(area.clientHeight-60);
+
+  heart.style.left=x+"px";
+  heart.style.top=y+"px";
+
 }
+
+moveHeart();
+
 
 function catchIt(){
 
   score++;
 
-  document.getElementById("score").innerText =
-    "Score: "+score;
+  document.getElementById("score")
+  .innerText=
+  "Score: "+score+" / 10";
 
   moveHeart();
 
-  if(score === 10){
+  if(score >= 10){
 
-    document.getElementById("score").innerText =
-      "You caught AKS's heart 😭❤️";
+    document.getElementById("catchHeart")
+    .style.display="none";
+
+    document.getElementById("score")
+    .innerText=
+    "You caught AKS's heart 😭❤️";
 
     burstConfetti();
+
+    document.getElementById("gameDone")
+    .style.display="inline-block";
+
   }
+
 }
 
-moveHeart();
+
+/* QUESTION */
 
 function moveNo(){
 
-  const btn = document.getElementById("noBtn");
+  const btn=
+  document.getElementById("noBtn");
 
-  const x = Math.random()*220;
-  const y = Math.random()*100 + 60;
+  const area=
+  document.querySelector(".questionArea");
 
-  btn.style.left = x+"px";
-  btn.style.top = y+"px";
+  const x=
+  Math.random()*(area.clientWidth-110);
+
+  const y=
+  60+Math.random()*90;
+
+  btn.style.left=x+"px";
+  btn.style.top=y+"px";
+
 }
+
 
 function yesClicked(){
 
   burstConfetti();
 
-  alert("I KNEW IT 😭❤️");
+  document.getElementById("questionDone")
+  .style.display="inline-block";
 
 }
+
+
+/* SECRET */
 
 function showSecret(){
 
-  const secret = document.getElementById("secretText");
+  document.getElementById("secretText")
+  .style.display="block";
 
-  secret.style.display =
-    secret.style.display === "block"
-    ? "none"
-    : "block";
+  burstConfetti();
+
+  document.getElementById("secretDone")
+  .style.display="inline-block";
+
 }
+
+
+/* LETTER */
 
 function openLetter(){
 
   document.getElementById("letter")
-  .classList.toggle("open");
+  .classList.add("open");
+
+  document.getElementById("letterDone")
+  .style.display="inline-block";
 
 }
 
-function burstConfetti(){
 
-  const emojis =
-  ["💗","❤️","💕","🌸","✨","💖"];
+/* FINAL */
 
-  for(let i=0;i<55;i++){
+function finish(){
 
-    const el =
-    document.createElement("div");
+  nextScreen();
 
-    el.className="confetti";
+  burstConfetti();
 
-    el.innerText =
-    emojis[Math.floor(Math.random()*emojis.length)];
-
-    el.style.left =
-    Math.random()*100+"vw";
-
-    el.style.animationDuration =
-    (2+Math.random()*3)+"s";
-
-    document.body.appendChild(el);
-
-    setTimeout(()=>{
-      el.remove();
-    },5000);
-
-  }
 }
 
-function createFloating(){
 
-  const el =
+function restart(){
+
+  location.reload();
+
+}
+
+
+/* BACKGROUND HEARTS */
+
+function floatingHeart(){
+
+  const element=
   document.createElement("div");
 
-  const icons =
-  ["❤️","💗","💕","✨","🌸"];
+  const icons=
+  ["❤️","💗","💕","🌸","✨","💖"];
 
-  el.className="floating";
+  element.className="floating";
 
-  el.innerText =
-  icons[Math.floor(Math.random()*icons.length)];
+  element.innerText=
+  icons[
+    Math.floor(
+      Math.random()*icons.length
+    )
+  ];
 
-  el.style.left =
+  element.style.left=
   Math.random()*100+"vw";
 
-  el.style.fontSize =
+  element.style.fontSize=
   (15+Math.random()*25)+"px";
 
-  el.style.animationDuration =
+  element.style.animationDuration=
   (5+Math.random()*5)+"s";
 
-  document.body.appendChild(el);
+  document.body.appendChild(element);
 
   setTimeout(()=>{
-    el.remove();
+    element.remove();
   },10000);
 
 }
 
-setInterval(createFloating,550);
+setInterval(floatingHeart,600);
 
-function scrollToFun(){
-  document.getElementById("fun")
-  .scrollIntoView({
-    behavior:"smooth"
-  });
+
+/* CONFETTI */
+
+function burstConfetti(){
+
+  const icons=[
+    "❤️","💖","💕","🌸","✨"
+  ];
+
+  for(let i=0;i<45;i++){
+
+    const c=
+    document.createElement("div");
+
+    c.className="confetti";
+
+    c.innerText=
+    icons[
+      Math.floor(
+        Math.random()*icons.length
+      )
+    ];
+
+    c.style.left=
+    Math.random()*100+"vw";
+
+    c.style.fontSize=
+    (15+Math.random()*20)+"px";
+
+    c.style.animationDuration=
+    (2+Math.random()*3)+"s";
+
+    document.body.appendChild(c);
+
+    setTimeout(()=>{
+      c.remove();
+    },5000);
+
+  }
+
 }
 
 </script>
